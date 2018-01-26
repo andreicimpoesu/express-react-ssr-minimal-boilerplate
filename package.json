@@ -1,12 +1,12 @@
 {
-	"name": "a",
-	"version": "1.0.0",
-	"description": "",
-	"main": "app.js",
+	"name": "express-react-ssr-minimal-boilerplate",
+	"version": "0.0.1",
+	"description": "express-react-ssr-minimal-boilerplate",
+	"main": "*.tsx",
 	"scripts": {
-        "start"        : "npm-run-all --parallel watch:server watch:build",
-        "watch:build"  : "webpack --watch",
-        "watch:server" : "nodemon ./dist/server.js"        
+		"watch:build": "webpack",
+		"watch:server": "nodemon ./dist/server.js",
+		"start": "npm-run-all --parallel watch:server watch:build"
 	},
 	"author": "Andrei Cimpoesu",
 	"license": "ISC",

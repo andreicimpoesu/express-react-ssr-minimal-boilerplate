@@ -1,6 +1,2 @@
-# Dependency directory
 node_modules/
-dist/client.js
-dist/client.js.map
-dist/server.js
-dist/server.js.map
+dist/*
