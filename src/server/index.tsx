@@ -1,28 +1,41 @@
 import express from "express";
 import path from "path";
 import React from "react";
-import ReactDOMServer from "react-dom/server";
+import { renderToString } from "react-dom/server";
+import { StaticRouter as Router } from "react-router-dom";
+
 import App from "../client/app";
+import Routes from '../client/routes';
 
 const app = express();
 
 app.use('/', express.static(path.join(__dirname + '/')));
 
+
 function handleRender(req, res) {
-    const reactHtml = ReactDOMServer.renderToString(<App />);
-    const htmlTemplate = `<!DOCTYPE html>
+
+    const context = {};
+    const componentHTML = renderToString(
+        <Router location={ req.url } context={ context }>
+            <Routes />
+        </Router>
+    );
+
+    const HTML = `
+        <!DOCTYPE html>
         <html>
             <head>
-                <title>Universal React server bundle</title>
+                <title>SSR test</title>
             </head>
             <body>
-                <div id="app">${reactHtml}</div>
-                <script src="./client.js"></script>
+                <div id="app">${componentHTML}</div>
+                <script type="application/javascript" src="./client.js"></script>
             </body>
         </html>
     `;
-    res.send(htmlTemplate);
-}
+
+    res.send(HTML);
+};
 
 app.get("*", handleRender);
 app.listen(3000);

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 
-class App extends React.Component<any, any> {
+
+class App extends Component<any, any> {
 
     constructor(props) {
         super(props);
